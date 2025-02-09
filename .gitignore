@@ -2,6 +2,7 @@
 /node_modules
 /.pnp
 .pnp.js
+.npm
 
 # testing
 /coverage
@@ -9,38 +10,29 @@
 # next.js
 /.next/
 /out/
-
-# production
 /build
 
-# misc
-.DS_Store
-*.pem
-
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# local env files
-.env*.local
+# environment variables
 .env
+.env*.local
 .env.development
 .env.test
 .env.production
 
-# vercel
-.vercel
+# docker
+.docker
+docker-compose.override.yml
+*.dockerfile
+.dockerignore
 
-# typescript
-*.tsbuildinfo
-next-env.d.ts
-
-# IDE specific files
-.idea
-.vscode
-*.swp
-*.swo
+# debug
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.eslintcache
+.stylelintcache
 
 # PWA files
 **/public/sw.js
@@ -54,20 +46,29 @@ next-env.d.ts
 /public/sitemap*.xml
 /public/robots.txt
 
-# Logs
-logs
-*.log
+# IDE specific files
+.idea
+.vscode
+*.swp
+*.swo
 
-# Optional npm cache directory
-.npm
-
-# Optional eslint cache
-.eslintcache
-
-# Optional stylelint cache
-.stylelintcache
-
-# macOS
+# OS generated files
 .DS_Store
+.DS_Store?
 .AppleDouble
 .LSOverride
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Vercel
+.vercel
+
+# misc
+*.pem
