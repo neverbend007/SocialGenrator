@@ -1183,4 +1183,27 @@ body {
 
 .finished-button:hover {
   background-color: var(--primary-hover);
+}
+
+/* Add these styles */
+.signin-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.signin-button {
+  padding: 12px 24px;
+  background-color: #4285f4;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.signin-button:hover {
+  background-color: #357abd;
 } 

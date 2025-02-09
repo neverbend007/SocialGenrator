@@ -6,9 +6,6 @@ const getBaseUrl = () => {
   if (process.env.NEXTAUTH_URL) {
     return process.env.NEXTAUTH_URL;
   }
-  if (process.env.RAILWAY_STATIC_URL) {
-    return `https://${process.env.RAILWAY_STATIC_URL}`;
-  }
   if (process.env.VERCEL_URL) {
     return `https://${process.env.VERCEL_URL}`;
   }
@@ -31,9 +28,9 @@ export const authOptions = {
     },
   },
   pages: {
-    signIn: '/auth/signin',
-    error: '/auth/error',
-  }
+    signIn: '/auth/signin'
+  },
+  debug: true
 };
 
 // Export the NextAuth handler as the default export
