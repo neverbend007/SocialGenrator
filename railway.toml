@@ -11,4 +11,5 @@ restartPolicyMaxRetries = 5
 healthcheckInterval = 10
 
 [variables]
-NODE_ENV = "production" 
+NODE_ENV = "production"
+RAILWAY_STATIC_URL = "https://${RAILWAY_STATIC_URL}" 
