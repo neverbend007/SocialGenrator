@@ -39,18 +39,8 @@ const startServer = async () => {
   // Enable trust proxy since we're behind Railway's proxy
   server.enable('trust proxy');
 
-  // Add CORS headers
-  server.use((req, res, next) => {
-    // Allow requests from Railway's domain
-    res.header('Access-Control-Allow-Origin', process.env.RAILWAY_STATIC_URL || '*');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    
-    if (req.method === 'OPTIONS') {
-      return res.sendStatus(200);
-    }
-    next();
-  });
+  // Serve static files from the public directory
+  server.use(express.static(path.join(__dirname, 'public')));
 
   // Add request logging
   server.use((req, res, next) => {
@@ -65,7 +55,12 @@ const startServer = async () => {
 
   try {
     console.log('Initializing Next.js...');
-    const app = next({ dev });
+    const app = next({ 
+      dev,
+      hostname: '0.0.0.0',
+      port,
+      dir: __dirname
+    });
     const handle = app.getRequestHandler();
 
     await app.prepare();
@@ -82,15 +77,12 @@ const startServer = async () => {
         console.error('Error starting server:', err);
         throw err;
       }
-      console.log(`> Server listening on all interfaces, port ${port}`);
+      console.log(`> Server listening on port ${port}`);
       console.log('Server environment:', {
         nodeEnv: process.env.NODE_ENV,
         port: port,
         nextAuthUrl: process.env.NEXTAUTH_URL,
-        railwayUrl: process.env.RAILWAY_STATIC_URL,
-        hasSupabaseUrl: !!process.env.NEXT_PUBLIC_SUPABASE_URL,
-        hasSupabaseKey: !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-        hasServiceRole: !!process.env.SUPABASE_SERVICE_ROLE_KEY
+        railwayUrl: process.env.RAILWAY_STATIC_URL
       });
     });
 

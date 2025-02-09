@@ -13,6 +13,10 @@ const nextConfig = {
         hostname: '**',
       },
     ],
+    unoptimized: true, // Disable image optimization in production
+    minimumCacheTTL: 60,
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   // Environment variables are now handled by Railway
   env: {

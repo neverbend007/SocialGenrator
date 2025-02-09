@@ -37,6 +37,7 @@ export default function Navigation({ session }) {
               height={40} 
               className="logo-image"
               priority
+              unoptimized
             />
             <span className="app-name">Custom Content Generator</span>
           </Link>
