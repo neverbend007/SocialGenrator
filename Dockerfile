@@ -57,6 +57,9 @@ RUN npm run build
 FROM node:18-alpine AS runner
 WORKDIR /app
 
+# Install curl for healthcheck
+RUN apk --no-cache add curl
+
 # Copy necessary files from builder
 COPY --from=builder /app/next.config.js ./
 COPY --from=builder /app/env.js ./
@@ -78,6 +81,10 @@ ENV NEXTAUTH_URL=${NEXTAUTH_URL}
 ENV NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
 ENV GOOGLE_ID=${GOOGLE_ID}
 ENV GOOGLE_SECRET=${GOOGLE_SECRET}
+
+# Add healthcheck
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
+    CMD curl --fail http://localhost:3000/api/health || exit 1
 
 # Start the application
 CMD ["node", "server.js"]

@@ -10,6 +10,11 @@ export default function Features() {
   console.log('Features Page - Session:', session);
   console.log('Features Page - Status:', status);
 
+  // Show loading state
+  if (status === 'loading') {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
       <Navigation session={session} />
