@@ -11,13 +11,12 @@ restartPolicyMaxRetries = 3
 healthcheckInterval = 15
 healthcheckStartPeriod = 45
 numReplicas = 1
-restartPolicyMaxRetries = 3
 
 [variables]
 NODE_ENV = "production"
-PORT = "8080"
+PORT = "3000"
 NEXT_PUBLIC_SUPABASE_URL = "https://vsnfewogxjiukoarykfq.supabase.co"
 NEXT_PUBLIC_SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZzbmZld29neGppdWtvYXJ5a2ZxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzkwMzQyOTAsImV4cCI6MjA1NDYxMDI5MH0.1QKaD1h31xhAw0xEPlqfv2OBzHJikMdGJaH1N84pNz0"
 SUPABASE_SERVICE_ROLE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZzbmZld29neGppdWtvYXJ5a2ZxIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTczOTAzNDI5MCwiZXhwIjoyMDU0NjEwMjkwfQ.c3EBCUe_Vdx5XDQTQWStcDZ8omu6vWHwS3W3MzmmpRY"
 RAILWAY_STATIC_URL = "${RAILWAY_STATIC_URL}"
-NEXTAUTH_URL = "https://${RAILWAY_STATIC_URL}" 
+NEXTAUTH_URL = "https://${RAILWAY_STATIC_URL}"
