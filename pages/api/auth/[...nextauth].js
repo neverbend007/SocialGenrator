@@ -1,6 +1,20 @@
 import NextAuth from 'next-auth';
 import GoogleProvider from "next-auth/providers/google";
 
+// Get URL from environment or generate a default one
+const getBaseUrl = () => {
+  if (process.env.NEXTAUTH_URL) {
+    return process.env.NEXTAUTH_URL;
+  }
+  if (process.env.RAILWAY_STATIC_URL) {
+    return `https://${process.env.RAILWAY_STATIC_URL}`;
+  }
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+  return 'http://localhost:3000';
+};
+
 export const authOptions = {
   providers: [
     GoogleProvider({
@@ -9,6 +23,7 @@ export const authOptions = {
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
+  baseUrl: getBaseUrl(),
   callbacks: {
     async redirect({ url, baseUrl }) {
       // Redirect to account page after sign in
