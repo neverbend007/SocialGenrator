@@ -21,6 +21,8 @@ npm start
 To run in docker container:
 
 docker build -t socialgenerator .
+
+
 docker run -p 3000:3000 socialgenerator
 
 ************************************************
