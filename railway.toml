@@ -4,11 +4,11 @@ dockerfilePath = "Dockerfile"
 
 [deploy]
 startCommand = "npm run start"
-healthcheckPath = "/api/health"
-healthcheckTimeout = 300
+healthcheckPath = "/health"
+healthcheckTimeout = 60
 restartPolicyType = "ON_FAILURE"
 restartPolicyMaxRetries = 3
-healthcheckInterval = 45
+healthcheckInterval = 15
 
 [variables]
 NODE_ENV = "production" 

@@ -57,16 +57,15 @@ RUN npm run build
 FROM node:18-alpine AS runner
 WORKDIR /app
 
-# Install curl for healthcheck
-RUN apk add --no-cache curl
-
 # Copy necessary files from builder
+COPY --from=builder /app/package*.json ./
+COPY --from=builder /app/server.js ./
 COPY --from=builder /app/next.config.js ./
 COPY --from=builder /app/env.js ./
 COPY --from=builder /app/public ./public
-COPY --from=builder /app/.next/standalone ./
-COPY --from=builder /app/.next/static ./.next/static
+COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/.env.local ./
+COPY --from=builder /app/node_modules ./node_modules
 
 # Expose port
 EXPOSE 3000
@@ -82,10 +81,5 @@ ENV NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
 ENV GOOGLE_ID=${GOOGLE_ID}
 ENV GOOGLE_SECRET=${GOOGLE_SECRET}
 
-# Create a simple startup script
-RUN echo '#!/bin/sh' > /start.sh && \
-    echo 'node server.js' >> /start.sh && \
-    chmod +x /start.sh
-
 # Start the application
-CMD ["/start.sh"]
+CMD ["npm", "start"]
