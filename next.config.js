@@ -1,7 +1,18 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['vsnfewogxjiukoarykfq.supabase.co'],
+    domains: [
+      'vsnfewogxjiukoarykfq.supabase.co',
+      'lh3.googleusercontent.com', // For Google profile images
+      'railway.app', // For Railway hosted images
+      'localhost' // For local development
+    ],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
   },
   // Environment variables are now handled by Railway
   env: {
