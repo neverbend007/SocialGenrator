@@ -1,1 +1,1 @@
-# SocialGenrator
+# SocialGenerator
